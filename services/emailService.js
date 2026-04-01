@@ -156,7 +156,7 @@ export const sendOrderNotificationToAdmin = async (order) => {
 
 export const sendStatusUpdateEmail = async (order) => {
   const statusMessages = {
-    Processing: { emoji: '⚙️', headline: "We're preparing your order!", body: 'Our team is carefully packaging your items for dispatch.' },
+    Processing: { emoji: '⚙️', headline: "We are preparing your order!", body: 'Our team is carefully packaging your items for dispatch.' },
     Shipped: { emoji: '🚚', headline: 'Your order is on its way!', body: `Your furniture is headed to ${order.shippingAddress.city}. Expected delivery in 2–3 days.` },
     Delivered: { emoji: '✅', headline: 'Order Delivered!', body: 'We hope you love your new furniture. Please share a photo with us!' },
     Cancelled: { emoji: '❌', headline: 'Order Cancelled', body: 'Your order has been cancelled. If you paid, a refund will be processed within 3–5 business days.' },
