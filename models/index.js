@@ -108,8 +108,9 @@ const orderSchema = new mongoose.Schema({
 orderSchema.pre('save', async function (next) {
   if (!this.orderId) {
     const year = new Date().getFullYear();
-    const count = await mongoose.model('Order').countDocuments();
-    this.orderId = `FUR-${year}-${String(count + 1).padStart(6, '0')}`;
+    // Generate a 6-character random alphanumeric string to prevent race conditions
+    const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+    this.orderId = `FUR-${year}-${randomStr}`;
   }
   if (this.isNew) {
     this.statusHistory.push({ status: this.status, note: 'Order placed' });
