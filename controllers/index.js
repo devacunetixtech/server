@@ -465,7 +465,7 @@ export const initializePayment = async (req, res) => {
     email,
     amount: Math.round(amount * 100), // kobo
     reference: `ARB-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`,
-    callback_url: callbackUrl || `${process.env.CLIENT_URL}/order-confirmation`,
+    callback_url: callbackUrl || `${(process.env.CLIENT_URL || '').replace(/\/$/, '')}/order-confirmation`,
     metadata: { orderId, custom_fields: [{ display_name: 'Order ID', variable_name: 'order_id', value: orderId }] },
   };
 

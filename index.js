@@ -8,6 +8,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+if (process.env.CLIENT_URL) {
+  process.env.CLIENT_URL = process.env.CLIENT_URL.replace(/\/$/, '');
+}
+
 import { connectDB } from './config/db.js';
 import routes from './routes/index.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';

@@ -97,7 +97,7 @@ export const sendOrderConfirmationToCustomer = async (order) => {
     <p class="value">${new Date(order.estimatedDelivery).toLocaleDateString('en-NG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
 
     <div class="cta">
-      <a href="${process.env.CLIENT_URL}/track-order?orderId=${order.orderId}">Track Your Order</a>
+      <a href="${(process.env.CLIENT_URL || '').replace(/\/$/, '')}/track-order?orderId=${order.orderId}">Track Your Order</a>
     </div>
 
     <p style="font-family:Arial,sans-serif; font-size:13px; color:#8a7968; text-align:center; margin-top:24px;">
@@ -143,7 +143,7 @@ export const sendOrderNotificationToAdmin = async (order) => {
     </table>
 
     <div class="cta">
-      <a href="${process.env.CLIENT_URL}/admin/orders">Manage Order in Dashboard</a>
+      <a href="${(process.env.CLIENT_URL || '').replace(/\/$/, '')}/admin/orders">Manage Order in Dashboard</a>
     </div>`;
 
   await getTransporter().sendMail({
@@ -175,7 +175,7 @@ export const sendStatusUpdateEmail = async (order) => {
     </div>
 
     <div class="cta">
-      <a href="${process.env.CLIENT_URL}/track-order?orderId=${order.orderId}">View Order Status</a>
+      <a href="${(process.env.CLIENT_URL || '').replace(/\/$/, '')}/track-order?orderId=${order.orderId}">View Order Status</a>
     </div>`;
 
   await getTransporter().sendMail({
